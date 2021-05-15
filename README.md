@@ -12,4 +12,5 @@ Build and Test:
 *	Open command prompt and go to directory.
 *	To run on local environment use command >> mvn clean test -DsuiteXmlFile=TestSuites\LibertyMutualAutomation.xml -Dbrowser=chrome
 *   To Generate Report  >> targest-->suirefire-reports--> index.html
+*   Demo vedio : https://drive.google.com/file/d/1exRCKCFX9K2JV1AcIo4dJgfe8x_PYnTq/view?usp=sharing
 
