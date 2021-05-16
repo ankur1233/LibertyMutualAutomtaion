@@ -9,10 +9,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.log4j.Logger;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -71,25 +68,51 @@ public class Browser {
 	 */
 	public void launchBrowser(Browsers browser,String url) {
 		String osArch = System.getProperty("os.arch");
+		String osName = System.getProperty("os.name");
 		log.info("Browser : " + browser);
 		log.info("OS Arch : " + osArch);
+		log.info("OS Name : " + osName);
 
 		if (browser == Browsers.Chrome) {
 
-			//System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
+			if(osArch.equalsIgnoreCase("Windows")) {
 
-			WebDriverManager.chromedriver().setup();
+				System.setProperty("webdriver.chrome.driver", "drivers/chromedriver.exe");
 
-			Map<String, Object> prefs = new HashMap<String, Object>();
+				//WebDriverManager.chromedriver().setup();
 
-			prefs.put("profile.default_content_setting_values.notifications", 2);
+				Map<String, Object> prefs = new HashMap<String, Object>();
 
-			// Create object of ChromeOption class
-			ChromeOptions options = new ChromeOptions();
+				prefs.put("profile.default_content_setting_values.notifications", 2);
 
-			// Set the experimental option
-			options.setExperimentalOption("prefs", prefs);
-			driver = new ChromeDriver(options);
+				// Create object of ChromeOption class
+				ChromeOptions options = new ChromeOptions();
+
+				// Set the experimental option
+				options.setExperimentalOption("prefs", prefs);
+				driver = new ChromeDriver(options);
+
+			}else {
+				System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
+				ChromeOptions options = new ChromeOptions();
+				options.addArguments("test-type");
+
+				DesiredCapabilities dr = null;
+
+				dr = DesiredCapabilities.chrome();
+
+				dr.setBrowserName("chrome");
+
+				dr.setPlatform(Platform.IOS);
+
+				dr.setCapability(ChromeOptions.CAPABILITY, options);
+				driver = new ChromeDriver();
+
+
+
+
+
+			}
 
 		} else if (browser == Browsers.FireFox) {
 			if (osArch.endsWith("64")) {

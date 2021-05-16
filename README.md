@@ -10,7 +10,8 @@ Build and Test:
 ---------------
 *	Clone the repository. >>  git clone https://github.com/ankur1233/LibertyMutualAutomtaion.git
 *	Open command prompt and go to directory.
-*	To run on local environment use command >> mvn clean test -DsuiteXmlFile=TestSuites\LibertyMutualAutomation.xml -Dbrowser=chrome
+*	To run on local environment use command >> mvn clean test -DsuiteXmlFile=TestSuites/LibertyMutualAutomation.xml -Dbrowser=chrome
 *   To Generate Report  >> targest-->suirefire-reports--> index.html
 *   Demo vedio : https://drive.google.com/file/d/1exRCKCFX9K2JV1AcIo4dJgfe8x_PYnTq/view?usp=sharing
+*   For mac give permission to chromeDriver using command in driver folder :: chmod 777 chromedriver
 
