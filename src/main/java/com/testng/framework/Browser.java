@@ -87,6 +87,7 @@ public class Browser {
 
 				// Create object of ChromeOption class
 				ChromeOptions options = new ChromeOptions();
+				options.addArguments("--disable-web-security");
 
 				// Set the experimental option
 				options.setExperimentalOption("prefs", prefs);
@@ -96,7 +97,7 @@ public class Browser {
 				System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("test-type");
-
+				options.addArguments("--disable-web-security");
 				DesiredCapabilities dr = null;
 
 				dr = DesiredCapabilities.chrome();
@@ -104,6 +105,7 @@ public class Browser {
 				dr.setBrowserName("chrome");
 
 				dr.setPlatform(Platform.IOS);
+
 
 				dr.setCapability(ChromeOptions.CAPABILITY, options);
 				driver = new ChromeDriver();
