@@ -88,6 +88,8 @@ public class Browser {
 				// Create object of ChromeOption class
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("--disable-web-security");
+				//chrome_options.add_argument("--disable-web-security")
+				options.addArguments("--disable-site-isolation-trials");
 
 				// Set the experimental option
 				options.setExperimentalOption("prefs", prefs);
@@ -98,6 +100,7 @@ public class Browser {
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("test-type");
 				options.addArguments("--disable-web-security");
+				options.addArguments("--disable-site-isolation-trials");
 				DesiredCapabilities dr = null;
 
 				dr = DesiredCapabilities.chrome();
