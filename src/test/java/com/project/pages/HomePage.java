@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import com.project.basetest.BaseTest;
 import com.testng.framework.Browser;
 import com.testng.pages.Pages;
+import org.openqa.selenium.support.ui.Sleeper;
 
 import java.util.List;
 
@@ -21,6 +22,32 @@ public class HomePage extends Pages{
 		this.driver=driver;
 	}
 
+
+	@FindBy(linkText = "Sign in with One Healthcare ID")
+	private WebElement logInBtn;
+
+	@FindBy(id="userNameId_input")
+	private WebElement userName;
+
+	@FindBy(id = "passwdId_input")
+	private WebElement passwordFiled;
+
+	@FindBy(xpath = "//button[text()='Log in']")
+	private WebElement logInFormBtn;
+
+	@FindBy(id = "SignIn")
+	private WebElement signBtn;
+
+	@FindBy(id = "dsc-menu-header")
+	private WebElement header;
+
+	@FindBy(xpath = "//button[@data-testid='logout']")
+	private WebElement logoutBtn;
+
+	@FindBy(id="errorMessage-description")
+	private WebElement error;
+
+	/*
 	@FindBy(linkText = "Log in")
 	private WebElement logInBtn;
 
@@ -41,13 +68,19 @@ public class HomePage extends Pages{
 
 	@FindBy(xpath = "//button[@data-testid='logout']")
 	private WebElement logoutBtn;
-
+*/
 
 	public HomePage fillSignForm(String a, String  b){
 
 		waitForElementToLoad(userName);
 		enterValue(userName,a,"UserName");
+		sleep(2);
+		clickOnElement(userName,"UserName");
+		sleep(2);
 		enterValue(passwordFiled,b,"Password");
+		sleep(2);
+		clickOnElement(passwordFiled,"Pass");
+		sleep(2);
 		return this;
 	}
 
@@ -55,6 +88,9 @@ public class HomePage extends Pages{
 		waitForElementToLoad(logInBtn);
 		//captureScreen("Home page");
 		clickOnElement(logInBtn,"Log In");
+
+
+
 		return this; }
 
 	public HomePage clickOnLogOut(){
@@ -65,7 +101,14 @@ public class HomePage extends Pages{
 
 
 	public HomePage clickOnSignLink(){
-		clickOnElement(logInFormBtn,"log in");
+		clickOnElement(signBtn,"log in");
+		sleep(4);
+		if(error.isDisplayed()){
+			refreshPage();
+			waitForElementToLoad(userName);
+			fillSignForm("linkdevops","April2021");
+			clickOnElement(signBtn,"log in");
+		}
 		waitForElementToLoad(header);
 		return this;
 

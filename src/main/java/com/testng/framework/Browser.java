@@ -97,25 +97,42 @@ public class Browser {
 
 			}else {
 				System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
+
+				DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+				Map<String, Object> prefs = new HashMap<String, Object>();
+
+				prefs.put("profile.default_content_setting_values.notifications", 2);
+
+
+	/*			ChromeOptions options = new ChromeOptions();
+				options.addArguments("--disable-web-security");
+				//chrome_options.add_argument("--disable-web-security")
+				options.addArguments("--disable-site-isolation-trials");
+				options.addArguments("--user-data-dir=/tmp/chrome_dev_tests");
+				options.addArguments("test-type");
+
+				options.addArguments("--disable-web-security");
+				options.addArguments("--allow-running-insecure-content");
+				// Set the experimental option
+				options.setExperimentalOption("prefs", prefs);
+
+				options.setCapability(ChromeOptions.CAPABILITY, options);
+*/
+
+
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("test-type");
+				//options.addArgument("--start-maximized");
 				options.addArguments("--disable-web-security");
-				options.addArguments("--disable-site-isolation-trials");
-				DesiredCapabilities dr = null;
-
-				dr = DesiredCapabilities.chrome();
-
-				dr.setBrowserName("chrome");
-
-				dr.setPlatform(Platform.IOS);
+				options.addArguments("--allow-running-insecure-content");
+				capabilities.setCapability("chrome.binary","drivers/chromedriver");
+				capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+				driver = new ChromeDriver(capabilities);
 
 
-				dr.setCapability(ChromeOptions.CAPABILITY, options);
-				driver = new ChromeDriver();
+			//	driver = new ChromeDriver(options);
 
-
-
-
+				System.out.println("tets");
 
 			}
 

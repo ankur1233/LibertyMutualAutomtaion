@@ -20,7 +20,7 @@ public class LoginScript extends BaseTest {
 
     homePage.clickOnLogInButton();
 
-    homePage.fillSignForm("mike793@gmail.com","Boston123").
+    homePage.fillSignForm("linkdevops","April2021").
             clickOnSignLink();
 
     homePage.clickOnLogOut();

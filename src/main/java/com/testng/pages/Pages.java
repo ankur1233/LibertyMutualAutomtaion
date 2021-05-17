@@ -24,7 +24,7 @@ public class Pages  {
 
 
 	public void waitForPageTOLoadNu(){
-		sleep((long) 3000);
+		sleep(3);
 		List<WebElement> ele;
 		ele= this.driver.findElements(By.xpath("div[aria-label=\"animation\"]"));
 		if(ele.size()>0) {
@@ -50,13 +50,13 @@ public class Pages  {
 
 
 	public void waitForElementToLoad(WebElement ele) {
-		sleep(3L);
+		sleep(3);
 		this.waitDriver.until(ExpectedConditions.visibilityOf(ele));
 	}
 
-	public void sleep(Long value){
+	public void sleep(int value){
 		try {
-			Thread.sleep(value);
+			Thread.sleep(value*1000);
 		}catch (Exception e){
 
 
@@ -84,7 +84,11 @@ public class Pages  {
 		ele.sendKeys(key);	
 		log.info("KeyBord Event:");
 	}
-	
+
+	public void refreshPage(){
+		driver.navigate().refresh();
+		sleep(3);
+	}
 	
 		
 

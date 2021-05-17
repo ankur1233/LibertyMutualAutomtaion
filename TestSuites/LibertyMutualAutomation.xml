@@ -5,7 +5,7 @@
     <!--#${browser}-->
 
     <parameter name="BROWSER" value="chrome" />
-    <parameter name="URL" value="https://www.libertymutual.com/" />
+    <parameter name="URL" value="https://provider.linkhealth.com/#/" />
 
     <test name="UserLogIn Journey">
         <classes>
